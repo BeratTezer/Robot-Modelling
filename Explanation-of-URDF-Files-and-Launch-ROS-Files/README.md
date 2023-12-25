@@ -35,6 +35,10 @@
     - "gedit robot.launch" You can find it in README.md file.
     - "cd ~/robot_ws/"
     - "catkin_make"
+        * If your "joint-state-publisher-gui" couldn't found, you can solve this problem with "sudo apt install ros-melodic-joint-state-publisher-gui"
 5. Test.
     - Go to new terminal and write "roscore"
-    - Then return the terminal you changed adn write "roslaunch robot_model_pkg robot.launch"
+    - Then return the terminal you changed adn write "roslaunch robot_model_pkg robot.launch".
+    - Now you will see RViz screen. Click "add" and select "robot model".
+    - Change the fixed frames name from "map" to "base_link"
+    - Then click "Save Configg as", go to "robot_model_pkg" and name it "robot.rviz".
