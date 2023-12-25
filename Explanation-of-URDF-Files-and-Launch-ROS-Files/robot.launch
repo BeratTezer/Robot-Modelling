@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-	<arg name="model" />
-	<param name="robot_description" textfile="$(find robot_model_pkg)/urdf/robot.urdf" />
-	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" tpye="joint_state_publisher_gui" />
-	<node name="robot_state_publisher" pkg="robot_state_publisher" tpye="robot_state_publisher" />
-	<node name="rviz" pkg="rviz" tpye="rviz" args="-d $(find robot_model_pkg)/robot.rviz" required="true"/>
-
-</launch>
