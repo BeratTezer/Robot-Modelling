@@ -79,5 +79,5 @@
     - "cd urdf"
     - "gedit material_color.xacro". You can find the content in README.md
     - "gedit robot.xacro". You can find the content in README.md
-    ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/72c7af1a-cba3-4f59-bd17-b2ee189ba369)
+    ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/9eea0efe-ea65-4550-929c-f0d0f346f3c1)
 
