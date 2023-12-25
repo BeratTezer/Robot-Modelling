@@ -10,24 +10,60 @@
                 <geometry>
                     <cylinder length="0.05" radius="0.2"/>
                 </geometry>
-                <!--origin - the reference frame of the visual element with respect to the reference frame of the link -->
-                <!-- rpy - r is roll, p-pitch and y -yaw -->
-                <!-- xyz - x,y,z -offsets -->
-                <origin rpy = "0 0 0" xyz="0 0 0"/>
+
+                <!-- Origin - the reference frame of the visual element with respect to the reference frame of the link -->
+                <!-- rpy - roll, pitch, and yaw -->
+                <!-- xyz - x, y, z offsets -->
+                <origin rpy="0 0 0" xyz="0 0 0"/>
                 <material name="yellow">
                     <color rgba="1 1 0 1"/>
                 </material>
             </visual>
         </link>
+        <joint name="joint_1" type="revolute">
+            <parent link="base_link"/>
+            <child link="first_link"/>
+                <origin xyz="0 0 0.025"/>
+                <axis xyz="0 0 1"/>
+                <limit effort="300" velocity="2.0" lower="-1.2" upper="1.2"/>
+        </joint>
+        <link name="first_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.5" radius="0.04"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0.25"/>
+            <material name="red">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+        </link>
+        <joint name="joint_2" type="prismatic">
+            <parent link="first_link"/>
+            <child link="second_link"/>
+                <origin xyz="0 0 0.5"/>
+                <axis xyz="0 1 0"/>
+                <limit effort="300" velocity="2.0" lower="-5" upper="5"/>
+        </joint>
+        <link name="second_link">
+        <visual>
+            <geometry>
+                <box size="0.1 1 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0.05"/>
+            <material name="blue">
+                <color rgba="0 1 0 1"/>
+            </material>
+        </visual>
+        </link>
     </robot>
 
 ## robot.launch:
-    <?xml version="1.0" ?>
+    <?xml version="1.0"?>
     <launch>
         <arg name="model" />
         <param name="robot_description" textfile="$(find robot_model_pkg)/urdf/robot.urdf" />
-        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" tpye="joint_state_publisher_gui" />
-        <node name="robot_state_publisher" pkg="robot_state_publisher" tpye="robot_state_publisher" />
-        <node name="rviz" pkg="rviz" tpye="rviz" args="-d $(find robot_model_pkg)/robot.rviz" required="true"/>
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_model_pkg)/robot.rviz" required="true"/>
     </launch>
-
