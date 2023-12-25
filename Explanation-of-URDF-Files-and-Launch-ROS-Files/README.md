@@ -14,7 +14,7 @@
     * "cd ~/robot_ws"
     * "catkin_make"
     * "source ~/robot_ws/devel/setup.bash"
-    * "$ROS_PACKAGE_PATH"
+    * "echo $ROS_PACKAGE_PATH"
     * "cd ~/robot_ws/src"
     * "catkin_create_pkg robot_model_pkg roscpp tf2 geometry_msgs urdf rviz joint_state_publisher_gui"
         * Dependencies:
@@ -24,5 +24,17 @@
         - urdf: C++ parser for URDF package
         - rviz: RVIZ
         - joint_state_publisher_gui: Contains a GUI tool for setting and publishing joint state values for a given URDE
-4. Create the URDF file and launc file.
-    
+4. Create the URDF file and launch file.
+    - "cd ~/robot_ws/src/robot_model_pkg"
+    - "mkdir urdf"
+    - "mkdir launch"
+    - "cd urdf"
+    - "gedit robot.urdf" You can find it in README.md file.
+    - "cd .."
+    - "cd launch"
+    - "gedit robot.launch" You can find it in README.md file.
+    - "cd ~/robot_ws/"
+    - "catkin_make"
+5. Test.
+    - Go to new terminal and write "roscore"
+    - Then return the terminal you changed adn write "roslaunch robot_model_pkg robot.launch"
