@@ -80,4 +80,10 @@
     - "gedit material_color.xacro". You can find the content in README.md
     - "gedit robot.xacro". You can find the content in README.md
     ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/9eea0efe-ea65-4550-929c-f0d0f346f3c1)
+    - "cd ~/robot2_ws/src/robot2_model_pkg/launch"
+    - "gedit robot_xacro.launch" You can find the content in README.md
+    - Return the original workspace "cd ~/robot2_ws"
+    - "catkin_make"
+    - "roslaunch robot2_model_pkg robot_xacro.launch" (If you close the roscore we ran in step 2, go a new terminal an start before this line)
 
+    - 8/34 33:50 (xmlllerden biri hatalı onu düzeltirsem çalışacak)
