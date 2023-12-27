@@ -88,3 +88,32 @@
         * Add->Robot Model
         * Change the fixed frame name from "map" to "base_link"
         * Add "TF", now you can see objects names.
+
+### Model Robots in Gazebo From Scratch by Using URDF and Xacro
+1. Go to a terminal and write "gazebo". If not, you have to install Gazebo by properly installing ROS.
+    - If you get "[Err] [REST.cc:205] Error in REST request", "gedit ~/.ignition/fuel/config.yaml" and change the url from "url: https://api.ignitionfuel.org" to this "url: https://api.ignitionrobotics.org"
+2. Necessary Packages
+    - "sudo apt-get install ros-melodic-gazebo-ros-pkgs"
+    - "sudo apt-get install ros-melodic-gazebo-msgs"
+    - "sudo apt-get install ros-melodic-gazebo-plugins"
+    - "sudo apt-get install ros-melodic-gazebo-ros-control"
+3. Create a workspace and catkin package
+    - "mkdir -p ~/robot3_ws/src"
+    - "cd ~/robot3_ws"
+    - "catkin_make"
+    - "source ~/robot3_ws/devel/setup.bash"
+    - "echo $ROS_PACKAGE_PATH"
+    - "cd ~/robot3_ws/src"
+    - "catkin_create_pkg robot_model3_pkg gazebo_msgs gazebo_plugins gazebo_ros gazebo_ros_control mastering_ros_robot_description_pkg"
+        * Dependencies:
+            - gazebo_msgs
+            - gazebo_plugins
+            - gazebo_ros 
+            - gazebo_ros_control 
+            - mastering_ros_robot_description_pkg
+4. Create the source files defining the robot geometry
+    - "cd ~/robot3_ws/src/robot_model3_pkg"
+    - "mkdir urdf"
+    - "cd ~/robot3_ws/src/robot_model3_pkg/urdf"
+    - "gedit robot.xacro" You can file the content in README.md
+    - "gedit robot.gazebo" You can file the content in README.md
