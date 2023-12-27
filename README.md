@@ -156,3 +156,44 @@
     - Specify the source "source ~/test_turtlebot/devel/setup.bash"
     - Specify the model "export TURTLEBOT3_MODEL=burger"
     - Launch the teleoperation node "roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch". Now we are able to control the robot again.
+
+### Create URDF File and Model of Four Wheeled Mobile Robot in ROS
+1. Install RVIZ nececities
+    - "sudo apt-get install ros-melodic-rviz"
+    - "roscore"
+    - "rosrun rviz rviz", if works continue.
+2. Install for URDF Modeling
+    - "sudo apt-get install ros-melodic-urdf"
+    - "sudo apt-get install liburdfdom-tools"
+    - "sudo apt-get install ros-melodic-xacro"
+3. Create the workspace and catkin package
+    - "mkdir -p ~/robot_dd/src"
+    - "cd ~/robot_dd"
+    - "catkin make"
+    - "source ~/robot_dd/devel/setup.bash"
+    - "echo $ROS_PACKAGE_PATH"
+    - "cd ~/robot_dd/src"
+    - Create the packages "catkin_create_pkg robot_dd_model_pkg roscpp tf2 geometry_msgs urdf rviz joint_state_publisher_gui"
+        * Dependencies:
+        * roscpp: CPP and ROS
+        * tf2: Lets the user keep track of multiple frames over time
+        * geometry_msgs: Messages for common geometric primitives such as points, vectors, and poses
+        * urdf: C++ parser for UDF package
+        * rviz: RVIZ
+        * joint_state_publisher_gui: Contains a GUI tool for setting and publishing joint state values for a given URDF
+4. Create the URDF file and Launch file
+    - "cd ~/robot_dd/src/robot_dd_model_pkg"
+    - "mkdir urdf"
+    - "mkdir launch"
+    - "cd urdf"
+    - "gedit robot.urdf"
+    - "cd ~/robot_dd/src/robot_dd_model_pkg/launch"
+    - "gedit robot.launch"
+    - "cd ~/robot_dd"
+    - "catkin_make" again.
+5. Test
+    - Open a new terminal
+    - "roscore"
+    - In original terminal, write "roslaunch robot_dd_model_pkg robot.launch"
+    - Change the fixed frame name from "map" to "body_link" then add "RobotModel".
+    - Too see the move you give from joint_state_publisher_gui, click add, then select the Axes and try to change wheel1_joint value. You will see the difference in simulation.
