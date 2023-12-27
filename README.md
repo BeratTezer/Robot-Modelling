@@ -121,5 +121,6 @@
     - "mkdir launch"
     - "cd ~/robot3_ws/src/robot_model3_pkg/launch"
     - "gedit robot_xacro.launch" You can file the content in README.md
+    ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/be97e5c6-c62f-4b6f-8ee4-2bb5733aafe6)
 5. Launch the model in Gazebo
     - "roslaunch robot_model_pkg robot_xacro.launch"
