@@ -117,3 +117,9 @@
     - "cd ~/robot3_ws/src/robot_model3_pkg/urdf"
     - "gedit robot.xacro" You can file the content in README.md
     - "gedit robot.gazebo" You can file the content in README.md
+    - "cd .."
+    - "mkdir launch"
+    - "cd ~/robot3_ws/src/robot_model3_pkg/launch"
+    - "gedit robot_xacro.launch" You can file the content in README.md
+5. Launch the model in Gazebo
+    - "roslaunch robot_model_pkg robot_xacro.launch"
