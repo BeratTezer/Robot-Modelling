@@ -9,11 +9,11 @@
 
     <!-- Geometry -->
 
-    <xacro:property name="base_link_length" value="05"/>
+    <xacro:property name="base_link_length" value="0.05"/>
     <xacro:property name="base_link_radius" value="0.2"/>
 
     <xacro:property name="first_link_length" value="0.5"/>
-    <xacro:property name="first_link_radius" value="04"/>
+    <xacro:property name="first_link_radius" value="0.04"/>
 
     <xacro:property name="second_link_length" value="1.0"/>
     <xacro:property name="second_link_height" value="0.1"/>
@@ -62,8 +62,8 @@
             <parent link="base_link"/>
             <child link="first_link"/>
             <origin xyz="0 0 ${base_link_length/2}"/>
-            <axis xyz="0 0 1.0"/>
-            <limit lower="${limits_prismatic_lower}" upper="${limits_prismatic_upper}" effort="${limits_prismatic_effort}" velocity="${limits_prismatic_velocity}"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="${limits_revolute_lower}" upper="${limits_revolute_upper}" effort="${limits_revolute_effort}" velocity="${limits_revolute_velocity}"/>
         </joint>
 
         <link name="first_link">
@@ -83,7 +83,7 @@
 
             <inertial>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
-                <mass value="0"/>
+                <mass value="1"/>
                 <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100"/>
             </inertial>
         </link>
@@ -92,7 +92,7 @@
             <parent link="first_link"/>
             <child link="second_link"/>
             <origin xyz="0 0 ${first_link_length}"/>
-            <axis xyz="0 1.0 0"/>
+            <axis xyz="0 1 0"/>
             <limit lower="${limits_prismatic_lower}" upper="${limits_prismatic_upper}" effort="${limits_prismatic_effort}" velocity="${limits_prismatic_velocity}"/>
         </joint>
 
