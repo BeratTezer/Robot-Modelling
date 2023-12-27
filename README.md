@@ -124,3 +124,35 @@
     ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/be97e5c6-c62f-4b6f-8ee4-2bb5733aafe6)
 5. Launch the model in Gazebo
     - "roslaunch robot_model_pkg robot_xacro.launch"
+
+### TurtleBot3 Robot in ROS and Simulate Movement in Gazebo
+1. Create the folder and clone the necessary TurtleBot3 files
+    - "mkdir -p ~/test_turtlebot/src"
+    - "cd ~/test_turtlebot/src"
+    - "git clone https://github.com/ROBOTIS-GIT/turtlebot3.git"
+    - "git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git"
+    - "git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git"
+    - "cd ~/test_turtlebot"
+2. Create the workspace and specif the source
+    - "catkin_make"
+    - "source ~/test_turtlebot/devel/setup.bash"
+3. Simulate the robot motion in Gazebo
+    - We have three robot opitons. Burger, Waffle, and Waffle Pi. Now we will select the "burger"
+    - "export TURTLEBOT3_MODEL=burger"
+4. Launch the world
+    - Empty World: "roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch"
+    - Another World: "roslaunch turtlebot3_gazebo turtlebot3_world.launch"
+    - Teleoperation Node:
+        * Go to the new terminal
+        * Specify the source "source ~/test_turtlebot/devel/setup.bash"
+        * Specify the model "export TURTLEBOT3_MODEL=burger"
+        * Launch the teleoperation node "roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch". Now w are able to control the robot.
+5. Final test
+    - Go to new terminal "cd ~/test_turtlebot"
+    - Specify the source "source ~/test_turtlebot/devel/setup.bash"
+    - Specify the model "export TURTLEBOT3_MODEL=burger"
+    - Launch the house "roslaunch turtlebot3_gazebo turtlebot3_house.launch"
+    - Go to new terminal "cd ~/test_turtlebot"
+    - Specify the source "source ~/test_turtlebot/devel/setup.bash"
+    - Specify the model "export TURTLEBOT3_MODEL=burger"
+    - Launch the teleoperation node "roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch". Now we are able to control the robot again.
