@@ -1,0 +1,2 @@
+robot_dd_model_pkg
+-DCATKIN_DEVEL_PREFIX=/home/berat/robot_dd/devel -DCMAKE_INSTALL_PREFIX=/home/berat/robot_dd/install -G Unix Makefiles

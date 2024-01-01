@@ -196,4 +196,4 @@
     - "roscore"
     - In original terminal, write "roslaunch robot_dd_model_pkg robot.launch"
     - Change the fixed frame name from "map" to "body_link" then add "RobotModel".
-    - Too see the move you give from joint_state_publisher_gui, click add, then select the Axes and try to change wheel1_joint value. You will see the difference in simulation.
+    - Too see the move you give from joint_state_publisher_gui, click add, then select the Axes make Axes' reference wheel any of them and try to change wheel1_joint value. You will see the difference in simulation.
