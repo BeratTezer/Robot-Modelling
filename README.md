@@ -186,11 +186,12 @@
     - "mkdir urdf"
     - "mkdir launch"
     - "cd urdf"
-    - "gedit robot.urdf"
+    - "gedit robot.urdf" You can reach the code on README
     - "cd ~/robot_dd/src/robot_dd_model_pkg/launch"
-    - "gedit robot.launch"
+    - "gedit robot.launch" You can reach the code on README
     - "cd ~/robot_dd"
-    - "catkin_make" again.
+    - "catkin_make" again
+    ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/ab7c2186-fc80-49e9-9fd3-3e29dcc42ef0)
 5. Test
     - Open a new terminal
     - "roscore"
