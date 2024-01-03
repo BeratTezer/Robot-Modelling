@@ -211,7 +211,7 @@
         - Robot independent Gazebo plugins for sensors, motor and dynamic reconfigurable components.
         * "sudo apt-get install ros-melodic-gazebo-ros-control"
         - Controllers to communicate between ROS and Gazebo.
-        * "sudo apt-get install ros-melodic-teleop-twist-keboard"
+        * "sudo apt-get install ros-melodic-teleop-twist-keyboard"
         - Package for controlling the robot by using keyboard keys.
 2. Create the Workspace and Catkin package.
     - "mkdir -p ~/robot_four/src"
@@ -230,7 +230,21 @@
     - "cd ~/robot_four/src/robot_model_pkg"
     - "mkdir urdf"
     - "cd ~/robot_four/src/robot_model_pkg/urdf"
-    - "gedit robot.xacro" You can find the content in related README file.
     - ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/ff0ae5f7-4b33-4aa0-b0ff-5bdfbde2757e)
-
-    - ""
+    - "gedit robot.xacro" You can find content in the related README file.
+    - "gedit robot.gazebo" You can find content in the related README file.
+4. Create the launch file.
+    - "cd ~/robot_four/src/robot_model_pkg"
+    - "mkdir launch"
+    - "cd ~/robot_four/src/robot_model_pkg/launch"
+    - "gedit robot_xacro.launch" You can find content in the related README file.
+    - "cd ~/robot_four"
+    - "catkin_make"
+5. Launch the file.
+    - Go to a new terminal, "roscore"
+    - Return the terminal we working and "roslaunch robot_model_pkg robot_xacro.launch". Now we should see the model in the Gazebo.
+    - Go to a new terminal, "rosrun teleop_twist_keyboard teleop_twist_keyboard.py"
+6. Controls
+    - To investigate that are being used and published to. Go to new terminal and type:
+        * "rostopic echo /odom"
+        * "rostopic info /cmd_vel"
