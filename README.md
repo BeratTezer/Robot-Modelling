@@ -231,4 +231,6 @@
     - "mkdir urdf"
     - "cd ~/robot_four/src/robot_model_pkg/urdf"
     - "gedit robot.xacro" You can find the content in related README file.
+    - ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/ff0ae5f7-4b33-4aa0-b0ff-5bdfbde2757e)
+
     - ""
