@@ -199,7 +199,7 @@
     - Change the fixed frame name from "map" to "body_link" then add "RobotModel".
     - Too see the move you give from joint_state_publisher_gui, click add, then select the Axes make Axes' reference wheel any of them and try to change wheel1_joint value. You will see the difference in simulation.
 
-### Modeling, Simulation and Control of 4 Wheeled Robot in ROS and Gazebo
+### Modelling, Simulation and Control of 4 Wheeled Robot in ROS and Gazebo
 1. Install necessary packages
     - Open a terminal and write "gazebo". If Gazebo don't open, install it properly by installing ROS.
     - Download these:
@@ -239,6 +239,48 @@
     - "cd ~/robot_four/src/robot_model_pkg/launch"
     - "gedit robot_xacro.launch" You can find content in the related README file.
     - "cd ~/robot_four"
+    - "catkin_make"
+5. Launch the file.
+    - Go to a new terminal, "roscore"
+    - Return the terminal we working and "roslaunch robot_model_pkg robot_xacro.launch". Now we should see the model in the Gazebo.
+    - Go to a new terminal, "rosrun teleop_twist_keyboard teleop_twist_keyboard.py"
+6. Controls
+    - To investigate that are being used and published to. Go to new terminal and type:
+        * "rostopic echo /odom"
+        * "rostopic info /cmd_vel"
+
+### Modelling, Simulation and Control of 2 Wheeled Robot in ROS and Gazebo
+1. Install necessary packages
+    * "sudo apt-get install ros-melodic-gazebo-ros-pkgs"
+    * "sudo apt-get install ros-melodic-gazebo-msgs"
+    * "sudo apt-get install ros-melodic-gazebo-plugins"
+    * "sudo apt-get install ros-melodic-gazebo-ros-control"
+    * "sudo apt-get install ros-melodic-teleop-twist-keyboard"
+2. Create the Workspace and Catkin package.
+    - "mkdir -p ~/robot_two_wheeled/src"
+    - "cd robot_two_wheeled"
+    - "catkin_make"
+    - "source ~/robot_two_wheeled/devel/setup.bash"
+    - "echo $ROS_PACKAGE_PATH"
+    - "cd ~/robot_two_wheeled/src"
+    - "catkin_create_pkg robot_model_pkg gazebo_msgs gazebo_plugins gazebo_ros gazebo_ros_control"
+        * Dependencies:
+        * "gazebo_msgs"
+        * "gazebo_plugins"
+        * "gazebo_ros"
+        * "gazebo_ros_control"
+3. Create the source files defining robot geometry
+    - "cd ~/robot_two_wheeled/src/robot_model_pkg"
+    - "mkdir urdf"
+    - "cd ~/robot_two_wheeled/src/robot_model_pkg/urdf"
+    - "gedit robot.xacro" You can find content in the related README file.
+    - "gedit robot.gazebo" You can find content in the related README file.
+4. Create the launch file.
+    - "cd ~/robot_two_wheeled/src/robot_model_pkg"
+    - "mkdir launch"
+    - "cd ~/robot_two_wheeled/src/robot_model_pkg/launch"
+    - "gedit robot_xacro.launch" You can find content in the related README file.
+    - "cd ~/robot_two_wheeled"
     - "catkin_make"
 5. Launch the file.
     - Go to a new terminal, "roscore"
