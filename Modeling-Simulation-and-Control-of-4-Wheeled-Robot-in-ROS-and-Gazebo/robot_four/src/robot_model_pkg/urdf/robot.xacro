@@ -40,7 +40,7 @@
         </inertial>
     </xacro:macro>
 
-    <!-- Over here we include the file that dfefines extra Gazebo options and motion control driver -->
+    <!-- Over here we include the file that defines extra Gazebo options and motion control driver -->
     <xacro:include filename="$(find robot_model_pkg)/urdf/robot.gazebo"/>
     
     <!-- ############################## -->
