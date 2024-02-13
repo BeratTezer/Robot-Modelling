@@ -1,0 +1,2 @@
+robot_model_pkg
+-DCATKIN_DEVEL_PREFIX=/home/berat/robot_two_wheeled/devel -DCMAKE_INSTALL_PREFIX=/home/berat/robot_two_wheeled/install -G Unix Makefiles
