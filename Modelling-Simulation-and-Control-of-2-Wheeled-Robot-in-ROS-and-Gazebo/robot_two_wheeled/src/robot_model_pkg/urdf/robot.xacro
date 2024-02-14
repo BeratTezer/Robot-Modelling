@@ -395,39 +395,27 @@
     <!-- Second four support sticks of our robot -->
     <!-- ####################################### -->
 
-<!-- belirlediğimiz origin değeri öbjenin başlangıcı değil objenin merkezi imiş, diğer tüm değerli kontrol etmem lazımi bundan sonrakileri buna dikkat ederecek yapmalıyım önemli not. henüz düzenlenmediler -->
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- belirlediğimiz origin değeri öbjenin başlangıcı imiş, diğer tüm değerli kontrol etmem lazımi bundan sonrakileri buna dikkat ederecek yapmalıyım önemli not. henüz düzenlenmediler -->
 
     <!-- Left front -->
     <joint name="upper_body_support_lf_2" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_lf_2_link"/>
-        <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>
         <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
     </joint>
 
     <link name="upper_body_support_lf_2_link">
         <visual>
-            <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -441,21 +429,21 @@
     <joint name="upper_body_support_lb_2" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_lb_2_link"/>
-        <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>
         <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
     </joint>
 
     <link name="upper_body_support_lb_2_link">
         <visual>
-            <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -469,21 +457,21 @@
     <joint name="upper_body_support_rf_2" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_rf_2_link"/>
-        <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>
         <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
     </joint>
 
     <link name="upper_body_support_rf_2_link">
         <visual>
-            <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -497,21 +485,21 @@
     <joint name="upper_body_support_rb_2" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_rb_2_link"/>
-        <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>
         <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
     </joint>
 
     <link name="upper_body_support_rb_2_link">
         <visual>
-            <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -519,6 +507,37 @@
 
         <!-- Macro we defined before -->
         <xacro:inertia_upper_body_support>
+    </link>
+
+    <!-- ############################## -->
+    <!-- Second upper body of our robot -->
+    <!-- ############################## -->
+
+    <joint name="upper_body_2_joint" type="fixed">
+        <parent link="upper_body_support_lf_2_link"/>
+        <child link="upper_body_2_link"/>
+        <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 0.0 0.0"/>
+        <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="upper_body_2_link">
+        <visual>
+            <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.055 0.08 0.01"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.055 0.08 0.01"/>
+            </geometry>
+        </collision>
+        
+        <!-- Macro we defined before -->
+        <xacro:inertia_upper_body>
     </link>
 
 </robot>
