@@ -1,5 +1,7 @@
 # Contents of URDF Files and Launch ROS Files
 
+Never use any other character in these files instead of english language include.
+
 ## XML Files
 ## robot.xacro:
     <?xml version="1.0"?>
