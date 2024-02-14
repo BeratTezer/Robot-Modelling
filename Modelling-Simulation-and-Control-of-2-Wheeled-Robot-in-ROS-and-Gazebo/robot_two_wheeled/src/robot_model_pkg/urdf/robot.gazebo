@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!-- ###################################################### -->
+<!-- GAZEBO ADDITIONAL DESCRIPTION OF THE TWO WHEELED ROBOT -->
+<!-- Made by Berat Tezer           -            February 24 -->
+<!-- ###################################################### -->
+
+<robot>
+    <!-- http://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros -->
+    
+    <!-- mu1 and mu2 are friction coefficients -->
+    <gazebo reference="body_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="wheel_right_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="wheel_left_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="support_wheel_body_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="support_wheel_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_lf_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_lb_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_rf_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_rb_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_1_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_lf_2_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_lb_2_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_rf_2_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_rb_2_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="upper_body_support_rb_2_link">
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <material>Gazebo/Gray</material>
+    </gazebo>
+    
+    <!-- Controller for the four wheeled robot -->
+    <gazebo>
+        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+
+        <!-- Control update raze in Hz -->
+        <updateRate>100.0</updateRate>        
+        
+        <!-- Leave this empty otherwise there will be problems with sending control commands -->
+        <robotNamespace></robotNamespace>
+        
+        <!-- Robot Kinematics -->
+        <leftBackJoint>wheel_left_joint</leftBackJoint>
+        <rightBackJoint>wheel_right_joint</rightBackJoint>
+        <supportWheelBodyJoint>support_wheel_body_joint</supportWheelBodyJoint>
+        <supportWheelJoint>support_wheel_joint</supportWheelJoint>
+        <upperBodySupportLf>upper_body_support_lf_joint</upperBodySupportLf>
+        <upperBodySupportLb>upper_body_support_lb_joint</upperBodySupportLb>
+        <upperBodySupportRf>upper_body_support_rf_joint</upperBodySupportRf>
+        <upperBodySupportRb>upper_body_support_rb_joint</upperBodySupportRb>
+        <upperBody1>upper_body_1_joint</upperBody1>
+        <upperBodySupportLf2>upper_body_support_lf_2_joint</upperBodySupportLf2>
+        <upperBodySupportLb2>upper_body_support_lb_2_joint</upperBodySupportLb2>
+        <upperBodySupportRf2>upper_body_support_rf_2_joint</upperBodySupportRf2>
+        <upperBodySupportRb2>upper_body_support_rb_2_joint</upperBodySupportRb2>
+        <upperBody2>upper_body_2_joint</upperBody2>
+        <wheelSeparation>${-body_link_y_dim+wheel_link_length}</wheelSeparation>
+        <wheelDiameter>${wheel_link_radius}</wheelDiameter>
+        
+        <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+        <torque>1000</torque>
+        
+        <!-- Topic to receive geometry_msgs/Twist message commands, default to "cmd_vel" -->
+        <commandTopic>cmd_vel</commandTopic>
+        
+        <!-- Topic to publish nac_msgs/Odometry messages, defaults to "odom" -->
+        <odometryTopic>odom</odometryTopic>
+        
+        <!-- Odometry frame, defaults to "odom" -->
+        <odometryTopic>odom</odometryTopic>
+        
+        <!-- Robot frame to calculate odometry from, defaults to "base_footprint" -->
+        <robotBaseFrame>dummy</robotBaseFrame>
+
+        <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+        <publishWheelTF>true</publishWheelTF>
+
+        <!-- Set to true to publish transforms for the wheel links, defaults to true -->
+        <publishOdom>true</publishOdom>
+
+        <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+        <publishWheelJointStates>true</publishWheelJointStates>
+
+        <!-- This part required by Gazebo -->
+        <covariance_x>0.0001</covariance_x>
+        <covariance_y>0.0001</covariance_y>
+        <covariance_yaw>0.01</covariance_yaw>
+
+        </plugin>
+    </gazebo>
+</robot>

@@ -31,7 +31,7 @@
     <xacro:property name="support_wheel_body_link_z_dim" value="0.010"/>
 
     <!-- Support Wheel Dimension -->
-    <xacro:property name="support_wheel_link_radius" value="0.005"/>
+    <xacro:property name="support_wheel_link_radius" value="0.5"/> <!-- 0.005 idi -->
     <xacro:property name="support_wheel_link_length" value="0.1"/>
     <xacro:property name="support_wheel_link_z_location" value="0.010"/>
 
@@ -41,14 +41,14 @@
 
     <!-- Pi constant -->
     <xacro:property name="pi_const" value="3.14159265"/>
-
+    
     <!-- Robot body and wheel mass -->
-    <xacro:property name="body_mass" value="$ {body_density*body_link_x_dim*body_link_y_dim*body_link_z_dim}"/>
+    <xacro:property name="body_mass" value="${body_density*body_link_x_dim*body_link_y_dim*body_link_z_dim}"/>
     <xacro:property name="wheel_mass" value="${wheel_density*pi_const*wheel_link_radius*wheel_link_radius*wheel_link_length}"/>
-    <xacro:property name="upper_body_mass" value="body_density*upper_body_link_x_dim*upper_body_link_y_dim*upper_body_link_z_dim"/>
-    <xacro:property name="upper_body_support_mass" value="body_mass*upper_body_support_link_x_dim*upper_body_support_link_y_dim*upper_body_support_link_z_dim"/>
-    <xacro:property name="support_wheel_body_mass" value="body_mass*support_wheel_body_link_x_dim*support_wheel_body_link_y_dim*support_wheel_body_link_z_dim"/>
-    <xacro:property name="support_wheel_mass" value="wheel_density*pi_const*(support_wheel_link_radius/2)*(support_wheel_link_radius/2)*support_wheel_link_length"/>
+    <xacro:property name="upper_body_mass" value="${body_density*upper_body_link_x_dim*upper_body_link_y_dim*upper_body_link_z_dim}"/>
+    <xacro:property name="upper_body_support_mass" value="${body_mass*upper_body_support_link_x_dim*upper_body_support_link_y_dim*upper_body_support_link_z_dim}"/>
+    <xacro:property name="support_wheel_body_mass" value="${body_mass*support_wheel_body_link_x_dim*support_wheel_body_link_y_dim*support_wheel_body_link_z_dim}"/>
+    <xacro:property name="support_wheel_mass" value="${wheel_density*pi_const*(support_wheel_link_radius/2.0)*(support_wheel_link_radius/2.0)*support_wheel_link_length}"/>
     
     <!-- Moments of inertia of the wheel -->
     <xacro:property name="Iz_wheel" value="${0.5*wheel_mass*wheel_link_radius*wheel_link_radius}"/>
@@ -68,7 +68,7 @@
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <mass value="${upper_body_support_mass}"/>
-            <inertia ixx="${(1/12)*upper_body_support_mass*(upper_body_support_link_y_dim*upper_body_support_link_y_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" iyz="0" izz="${(1/12)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_y_dim*upper_body_support_link_y_dim)}"/>
+            <inertia ixx="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_y_dim*upper_body_support_link_y_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_y_dim*upper_body_support_link_y_dim)}"/>
         </inertial>
     </xacro:macro>
 
@@ -76,7 +76,7 @@
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <mass value="${upper_body_mass}"/>
-            <inertia ixx="${(1/12)*upper_body_mass*(upper_body_link_y_dim*upper_body_link_y_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" iyz="0" izz="${(1/12)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_y_dim*upper_body_link_y_dim)}"/>
+            <inertia ixx="${(1.0/12.0)*upper_body_mass*(upper_body_link_y_dim*upper_body_link_y_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_y_dim*upper_body_link_y_dim)}"/>
         </inertial>
     </xacro:macro>
 
@@ -120,7 +120,7 @@
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <mass value="${body_mass}"/>
-            <inertia ixx="${(1/12)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_z_dim*body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*body_mass*(body_link_x_dim*body_link_x_dim+body_link_z_dim*body_link_z_dim)}" iyz="0" izz="${(1/12)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_x_dim*body_link_x_dim)}"/>
+            <inertia ixx="${(1.0/12.0)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_z_dim*body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*body_mass*(body_link_x_dim*body_link_x_dim+body_link_z_dim*body_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_x_dim*body_link_x_dim)}"/>
         </inertial>
     </link>
 
@@ -129,7 +129,7 @@
     <!-- ################### -->
 
     <!-- Right Wheel -->
-    <joint name="wheel_right_joint" type="continious">
+    <joint name="wheel_right_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel_right_link"/>
         <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${-body_link_y_dim/2-wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/> <!-- Değiştirilebilir -->
@@ -154,11 +154,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_wheel>
+        <xacro:inertia_wheel/>
     </link>
 
     <!-- Left Wheel -->
-    <joint name="wheel_left_joint" type="continious">
+    <joint name="wheel_left_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel_left_link"/>
         <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/>
@@ -183,7 +183,7 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_wheel>
+        <xacro:inertia_wheel/>
     </link>
 
     <!-- Support Wheel Body -->
@@ -213,7 +213,7 @@
     </link>
 
     <!-- Support Wheel -->
-    <joint name="support_wheel_joint" type="continious">
+    <joint name="support_wheel_joint" type="continuous">
         <parent link="support_wheel_body_link"/>
         <child link="support_wheel_link"/>
         <origin xyz="-0.047 0.0 0.015" rpy="0.0 0.0 0.0"/>
@@ -226,21 +226,21 @@
         <visual>
             <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
             <geometry>
-                <sphere radius="0.005"/>
+                <sphere radius="support_wheel_link_radius"/>
             </geometry>
         </visual>
             
         <collision>
             <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
             <geometry>
-                <sphere radius="0.005"/>
+                <sphere radius="support_wheel_link_radius"/>
             </geometry>
         </collision>
         
         <inertial>
             <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
             <mass value="${body_mass}"/>
-            <inertia ixx="${(2/5)*support_wheel_mass*0.005^2}" ixy="0" ixz="0" iyy="${(2/5)*support_wheel_mass*0.005^2}" iyz="0" izz="${(2/5)*support_wheel_mass*0.005^2}"/>
+            <inertia ixx="${(2.0/5.0)*support_wheel_mass*support_wheel_link_radius*support_wheel_link_radius}" ixy="0" ixz="0" iyy="${(2.0/5.0)*support_wheel_mass*0.005*0.005}" iyz="0" izz="${(2.0/5.0)*support_wheel_mass*0.005*0.005}"/>
         </inertial>
     </link>
 
@@ -249,7 +249,7 @@
     <!-- ###################################### -->
 
     <!-- Left front -->
-    <joint name="upper_body_support_lf" type="fixed">
+    <joint name="upper_body_support_lf_joint" type="fixed">
         <parent link="body_link"/>
         <child link="upper_body_support_lf_link"/>
         <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
@@ -273,11 +273,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Left back -->
-    <joint name="upper_body_support_lb" type="fixed">
+    <joint name="upper_body_support_lb_joint" type="fixed">
         <parent link="body_link"/>
         <child link="upper_body_support_lb_link"/>
         <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
@@ -301,11 +301,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Right front -->
-    <joint name="upper_body_support_rf" type="fixed">
+    <joint name="upper_body_support_rf_joint" type="fixed">
         <parent link="body_link"/>
         <child link="upper_body_support_rf_link"/>
         <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
@@ -329,11 +329,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Right back -->
-    <joint name="upper_body_support_rb" type="fixed">
+    <joint name="upper_body_support_rb_joint" type="fixed">
         <parent link="body_link"/>
         <child link="upper_body_support_rb_link"/>
         <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
@@ -357,7 +357,7 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- ############################# -->
@@ -365,7 +365,7 @@
     <!-- ############################# -->
 
     <joint name="upper_body_1_joint" type="fixed">
-        <parent link="upper_body_support_lf"/>
+        <parent link="upper_body_support_lf_link"/>
         <child link="upper_body_1_link"/>
         <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 0.0 0.0"/>
@@ -388,7 +388,7 @@
         </collision>
         
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body>
+        <xacro:inertia_upper_body/>
     </link>
 
     <!-- ####################################### -->
@@ -398,7 +398,7 @@
 <!-- belirlediğimiz origin değeri öbjenin başlangıcı imiş, diğer tüm değerli kontrol etmem lazımi bundan sonrakileri buna dikkat ederecek yapmalıyım önemli not. henüz düzenlenmediler -->
 
     <!-- Left front -->
-    <joint name="upper_body_support_lf_2" type="fixed">
+    <joint name="upper_body_support_lf_2_joint" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_lf_2_link"/>
         <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
@@ -422,11 +422,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Left back -->
-    <joint name="upper_body_support_lb_2" type="fixed">
+    <joint name="upper_body_support_lb_2_joint" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_lb_2_link"/>
         <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
@@ -450,11 +450,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Right front -->
-    <joint name="upper_body_support_rf_2" type="fixed">
+    <joint name="upper_body_support_rf_2_joint" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_rf_2_link"/>
         <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
@@ -478,11 +478,11 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- Right back -->
-    <joint name="upper_body_support_rb_2" type="fixed">
+    <joint name="upper_body_support_rb_2_joint" type="fixed">
         <parent link="upper_body_1_link"/>
         <child link="upper_body_support_rb_2_link"/>
         <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
@@ -506,7 +506,7 @@
         </collision>
 
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body_support>
+        <xacro:inertia_upper_body_support/>
     </link>
 
     <!-- ############################## -->
@@ -537,7 +537,7 @@
         </collision>
         
         <!-- Macro we defined before -->
-        <xacro:inertia_upper_body>
+        <xacro:inertia_upper_body/>
     </link>
 
 </robot>
