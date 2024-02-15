@@ -31,7 +31,7 @@
     <xacro:property name="support_wheel_body_link_z_dim" value="0.010"/>
 
     <!-- Support Wheel Dimension -->
-    <xacro:property name="support_wheel_link_radius" value="0.5"/> <!-- 0.005 idi -->
+    <xacro:property name="support_wheel_link_radius" value="0.0050"/>
     <xacro:property name="support_wheel_link_length" value="0.1"/>
     <xacro:property name="support_wheel_link_z_location" value="0.010"/>
 
@@ -54,7 +54,7 @@
     <xacro:property name="Iz_wheel" value="${0.5*wheel_mass*wheel_link_radius*wheel_link_radius}"/>
     <xacro:property name="I_wheel" value="${(1.0/12.0)*wheel_mass*(3.0*wheel_link_radius/wheel_link_radius+wheel_link_length*wheel_link_length)}"/>
 
-    <!-- This macro defiens the complete inertial seciton of the wheel -->
+    <!-- This macro defines the complete inertial section of the wheel -->
     <!-- It is used later in cod -->
     <xacro:macro name="inertia_wheel">
         <inertial>
@@ -88,9 +88,9 @@
     <!-- Now we define Links and Joints -->
     <!-- ############################## -->
 
-    <!-- In ROS, created objects calls by links. -->
-    <!-- Joints are coming meaning that connecitons between two different shapes. -->
-    <!-- We won't call these conencitons as links -->
+    <!-- In ROS, created objects calls by links -->
+    <!-- Joints are coming meaning that connections between two different shapes -->
+    <!-- We won't call these connections as links -->
 
     <!-- We need to have this link, otherwise Gazebo will complain -->
     <link name="base"></link>
@@ -132,8 +132,8 @@
     <joint name="wheel_right_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel_right_link"/>
-        <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${-body_link_y_dim/2-wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/> <!-- Değiştirilebilir -->
-        <axis xyz="0.0 1.0 0.0"/> <!-- Değiştirilebilir -->
+        <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${-body_link_y_dim/2-wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 1.0 0.0"/>
         <limit lower="0.0" upper="0.0" effort="1000.0" velocity="1000.0"/>
         <dynamics damping="1.0" friction="1.0"/>
     </joint>
@@ -169,14 +169,14 @@
 
     <link name="wheel_left_link">
         <visual>
-            <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="1.570795 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
             <geometry>
                 <cylinder radius="${wheel_link_radius}" length="${wheel_link_length}"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="1.570795 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
             <geometry>
                 <cylinder radius="${wheel_link_radius}" length="${wheel_link_length}"/>
             </geometry>
@@ -198,14 +198,14 @@
 
     <link name="support_wheel_body_link">
         <visual>
-            <origin xyz="0.015 0.0 0.047" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.020 0.020 0.010"/>    
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="0.015 0.0 0.047" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.020 0.020 0.010"/>    
             </geometry>
@@ -224,21 +224,21 @@
 
     <link name="support_wheel_link">
         <visual>
-            <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+            <origin xyz="0.0 0.0 0.0" rpy="1.2345 0.56789 0.392699"/>
             <geometry>
-                <sphere radius="support_wheel_link_radius"/>
+                <sphere radius="${support_wheel_link_radius}"/>
             </geometry>
         </visual>
             
         <collision>
-            <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+            <origin xyz="0.0 0.0 0.0" rpy="1.2345 0.56789 0.392699"/>
             <geometry>
-                <sphere radius="support_wheel_link_radius"/>
+                <sphere radius="${support_wheel_link_radius}"/>
             </geometry>
         </collision>
         
         <inertial>
-            <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <mass value="${body_mass}"/>
             <inertia ixx="${(2.0/5.0)*support_wheel_mass*support_wheel_link_radius*support_wheel_link_radius}" ixy="0" ixz="0" iyy="${(2.0/5.0)*support_wheel_mass*0.005*0.005}" iyz="0" izz="${(2.0/5.0)*support_wheel_mass*0.005*0.005}"/>
         </inertial>
@@ -259,14 +259,14 @@
 
     <link name="upper_body_support_lf_link">
         <visual>
-            <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -287,14 +287,14 @@
 
     <link name="upper_body_support_lb_link">
         <visual>
-            <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -315,14 +315,14 @@
 
     <link name="upper_body_support_rf_link">
         <visual>
-            <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -343,14 +343,14 @@
 
     <link name="upper_body_support_rb_link">
         <visual>
-            <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -374,14 +374,14 @@
 
     <link name="upper_body_1_link">
         <visual>
-            <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.055 0.08 0.01"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.055 0.08 0.01"/>
             </geometry>
@@ -395,8 +395,6 @@
     <!-- Second four support sticks of our robot -->
     <!-- ####################################### -->
 
-<!-- belirlediğimiz origin değeri öbjenin başlangıcı imiş, diğer tüm değerli kontrol etmem lazımi bundan sonrakileri buna dikkat ederecek yapmalıyım önemli not. henüz düzenlenmediler -->
-
     <!-- Left front -->
     <joint name="upper_body_support_lf_2_joint" type="fixed">
         <parent link="upper_body_1_link"/>
@@ -408,14 +406,14 @@
 
     <link name="upper_body_support_lf_2_link">
         <visual>
-            <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -436,14 +434,14 @@
 
     <link name="upper_body_support_lb_2_link">
         <visual>
-            <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -464,14 +462,14 @@
 
     <link name="upper_body_support_rf_2_link">
         <visual>
-            <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -492,14 +490,14 @@
 
     <link name="upper_body_support_rb_2_link">
         <visual>
-            <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.01 0.01 0.03"/>
             </geometry>
@@ -523,14 +521,14 @@
 
     <link name="upper_body_2_link">
         <visual>
-            <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.055 0.08 0.01"/>
             </geometry>
         </visual>
 
         <collision>
-            <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <box size="0.055 0.08 0.01"/>
             </geometry>
