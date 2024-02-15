@@ -100,32 +100,15 @@
     
     <!-- Controller for the four wheeled robot -->
     <gazebo>
-        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <!-- <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so"> -->
 
             <!-- Control update raze in Hz -->
             <updateRate>100.0</updateRate>        
             
             <!-- Leave this empty otherwise there will be problems with sending control commands -->
             <robotNamespace></robotNamespace>
-            
-            <!-- Robot Kinematics -->
-            <leftBackJoint>wheel_left_joint</leftBackJoint>
-            <rightBackJoint>wheel_right_joint</rightBackJoint>
-            <supportWheelBodyJoint>support_wheel_body_joint</supportWheelBodyJoint>
-            <supportWheelJoint>support_wheel_joint</supportWheelJoint>
-            <upperBodySupportLf>upper_body_support_lf_joint</upperBodySupportLf>
-            <upperBodySupportLb>upper_body_support_lb_joint</upperBodySupportLb>
-            <upperBodySupportRf>upper_body_support_rf_joint</upperBodySupportRf>
-            <upperBodySupportRb>upper_body_support_rb_joint</upperBodySupportRb>
-            <upperBody1>upper_body_1_joint</upperBody1>
-            <upperBodySupportLf2>upper_body_support_lf_2_joint</upperBodySupportLf2>
-            <upperBodySupportLb2>upper_body_support_lb_2_joint</upperBodySupportLb2>
-            <upperBodySupportRf2>upper_body_support_rf_2_joint</upperBodySupportRf2>
-            <upperBodySupportRb2>upper_body_support_rb_2_joint</upperBodySupportRb2>
-            <upperBody2>upper_body_2_joint</upperBody2>
-            <wheelSeparation>${-body_link_y_dim+wheel_link_length}</wheelSeparation>
-            <wheelDiameter>${wheel_link_radius}</wheelDiameter>
-            
+                        
             <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
             <torque>1000</torque>
             

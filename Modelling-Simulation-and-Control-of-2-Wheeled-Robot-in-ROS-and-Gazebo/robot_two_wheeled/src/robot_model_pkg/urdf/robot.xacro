@@ -12,7 +12,7 @@
 
     <!-- Wheel Dimensions -->
     <xacro:property name="wheel_link_radius" value="0.045"/>
-    <xacro:property name="wheel_link_length" value="0.1"/>
+    <xacro:property name="wheel_link_length" value="0.01"/>
     <xacro:property name="wheel_link_z_location" value="0.0225"/>
 
     <!-- Upper Body Dimensions -->
@@ -93,9 +93,9 @@
     <!-- We won't call these connections as links -->
 
     <!-- We need to have this link, otherwise Gazebo will complain -->
-    <link name="base"></link>
+    <link name="base_link"></link>
     <joint name="base_joint" type="fixed">
-        <parent link="base"/>
+        <parent link="base_link"/>
         <child link="body_link"/>
     </joint>
 

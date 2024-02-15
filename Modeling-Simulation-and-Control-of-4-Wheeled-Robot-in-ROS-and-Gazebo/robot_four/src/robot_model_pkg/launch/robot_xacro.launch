@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- ############################################################### -->
-<!-- LAUNCH FİLE FOR THE GAZEBO SIMULATION OF THE FOUR WHEELED ROBOT -->
-<!-- Made by Alexsandar Haber              -              October 23 -->
+<!-- LAUNCH FILE FOR THE GAZEBO SIMULATION OF THE FOUR WHEELED ROBOT -->
+<!-- Made by Berat Tezer                -                 October 23 -->
 <!-- ############################################################### -->
 <launch>
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
