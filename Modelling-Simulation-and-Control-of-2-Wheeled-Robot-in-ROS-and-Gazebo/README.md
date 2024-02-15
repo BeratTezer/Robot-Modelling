@@ -37,7 +37,7 @@ Never use any other character in these files instead of english language include
         <xacro:property name="support_wheel_body_link_z_dim" value="0.010"/>
 
         <!-- Support Wheel Dimension -->
-        <xacro:property name="support_wheel_link_radius" value="0.005"/>
+        <xacro:property name="support_wheel_link_radius" value="0.0050"/>
         <xacro:property name="support_wheel_link_length" value="0.1"/>
         <xacro:property name="support_wheel_link_z_location" value="0.010"/>
 
@@ -47,20 +47,20 @@ Never use any other character in these files instead of english language include
 
         <!-- Pi constant -->
         <xacro:property name="pi_const" value="3.14159265"/>
-
+        
         <!-- Robot body and wheel mass -->
-        <xacro:property name="body_mass" value="$ {body_density*body_link_x_dim*body_link_y_dim*body_link_z_dim}"/>
+        <xacro:property name="body_mass" value="${body_density*body_link_x_dim*body_link_y_dim*body_link_z_dim}"/>
         <xacro:property name="wheel_mass" value="${wheel_density*pi_const*wheel_link_radius*wheel_link_radius*wheel_link_length}"/>
-        <xacro:property name="upper_body_mass" value="body_density*upper_body_link_x_dim*upper_body_link_y_dim*upper_body_link_z_dim"/>
-        <xacro:property name="upper_body_support_mass" value="body_mass*upper_body_support_link_x_dim*upper_body_support_link_y_dim*upper_body_support_link_z_dim"/>
-        <xacro:property name="support_wheel_body_mass" value="body_mass*support_wheel_body_link_x_dim*support_wheel_body_link_y_dim*support_wheel_body_link_z_dim"/>
-        <xacro:property name="support_wheel_mass" value="wheel_density*pi_const*(support_wheel_link_radius/2)*(support_wheel_link_radius/2)*support_wheel_link_length"/>
+        <xacro:property name="upper_body_mass" value="${body_density*upper_body_link_x_dim*upper_body_link_y_dim*upper_body_link_z_dim}"/>
+        <xacro:property name="upper_body_support_mass" value="${body_mass*upper_body_support_link_x_dim*upper_body_support_link_y_dim*upper_body_support_link_z_dim}"/>
+        <xacro:property name="support_wheel_body_mass" value="${body_mass*support_wheel_body_link_x_dim*support_wheel_body_link_y_dim*support_wheel_body_link_z_dim}"/>
+        <xacro:property name="support_wheel_mass" value="${wheel_density*pi_const*(support_wheel_link_radius/2.0)*(support_wheel_link_radius/2.0)*support_wheel_link_length}"/>
         
         <!-- Moments of inertia of the wheel -->
         <xacro:property name="Iz_wheel" value="${0.5*wheel_mass*wheel_link_radius*wheel_link_radius}"/>
         <xacro:property name="I_wheel" value="${(1.0/12.0)*wheel_mass*(3.0*wheel_link_radius/wheel_link_radius+wheel_link_length*wheel_link_length)}"/>
 
-        <!-- This macro defiens the complete inertial seciton of the wheel -->
+        <!-- This macro defines the complete inertial section of the wheel -->
         <!-- It is used later in cod -->
         <xacro:macro name="inertia_wheel">
             <inertial>
@@ -74,7 +74,7 @@ Never use any other character in these files instead of english language include
             <inertial>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <mass value="${upper_body_support_mass}"/>
-                <inertia ixx="${(1/12)*upper_body_support_mass*(upper_body_support_link_y_dim*upper_body_support_link_y_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" iyz="0" izz="${(1/12)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_y_dim*upper_body_support_link_y_dim)}"/>
+                <inertia ixx="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_y_dim*upper_body_support_link_y_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_z_dim*upper_body_support_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*upper_body_support_mass*(upper_body_support_link_x_dim*upper_body_support_link_x_dim+upper_body_support_link_y_dim*upper_body_support_link_y_dim)}"/>
             </inertial>
         </xacro:macro>
 
@@ -82,7 +82,7 @@ Never use any other character in these files instead of english language include
             <inertial>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <mass value="${upper_body_mass}"/>
-                <inertia ixx="${(1/12)*upper_body_mass*(upper_body_link_y_dim*upper_body_link_y_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" iyz="0" izz="${(1/12)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_y_dim*upper_body_link_y_dim)}"/>
+                <inertia ixx="${(1.0/12.0)*upper_body_mass*(upper_body_link_y_dim*upper_body_link_y_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_z_dim*upper_body_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*upper_body_mass*(upper_body_link_x_dim*upper_body_link_x_dim+upper_body_link_y_dim*upper_body_link_y_dim)}"/>
             </inertial>
         </xacro:macro>
 
@@ -94,9 +94,9 @@ Never use any other character in these files instead of english language include
         <!-- Now we define Links and Joints -->
         <!-- ############################## -->
 
-        <!-- In ROS, created objects calls by links. -->
-        <!-- Joints are coming meaning that connecitons between two different shapes. -->
-        <!-- We won't call these conencitons as links -->
+        <!-- In ROS, created objects calls by links -->
+        <!-- Joints are coming meaning that connections between two different shapes -->
+        <!-- We won't call these connections as links -->
 
         <!-- We need to have this link, otherwise Gazebo will complain -->
         <link name="base"></link>
@@ -126,7 +126,7 @@ Never use any other character in these files instead of english language include
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <mass value="${body_mass}"/>
-                <inertia ixx="${(1/12)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_z_dim*body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1/12)*body_mass*(body_link_x_dim*body_link_x_dim+body_link_z_dim*body_link_z_dim)}" iyz="0" izz="${(1/12)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_x_dim*body_link_x_dim)}"/>
+                <inertia ixx="${(1.0/12.0)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_z_dim*body_link_z_dim)}" ixy="0" ixz="0" iyy="${(1.0/12.0)*body_mass*(body_link_x_dim*body_link_x_dim+body_link_z_dim*body_link_z_dim)}" iyz="0" izz="${(1.0/12.0)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_x_dim*body_link_x_dim)}"/>
             </inertial>
         </link>
 
@@ -135,11 +135,11 @@ Never use any other character in these files instead of english language include
         <!-- ################### -->
 
         <!-- Right Wheel -->
-        <joint name="wheel_right_joint" type="continious">
+        <joint name="wheel_right_joint" type="continuous">
             <parent link="body_link"/>
             <child link="wheel_right_link"/>
-            <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${-body_link_y_dim/2-wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/> <!-- Değiştirilebilir -->
-            <axis xyz="0.0 1.0 0.0"/> <!-- Değiştirilebilir -->
+            <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${-body_link_y_dim/2-wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/>
+            <axis xyz="0.0 1.0 0.0"/>
             <limit lower="0.0" upper="0.0" effort="1000.0" velocity="1000.0"/>
             <dynamics damping="1.0" friction="1.0"/>
         </joint>
@@ -160,11 +160,11 @@ Never use any other character in these files instead of english language include
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_wheel>
+            <xacro:inertia_wheel/>
         </link>
 
         <!-- Left Wheel -->
-        <joint name="wheel_left_joint" type="continious">
+        <joint name="wheel_left_joint" type="continuous">
             <parent link="body_link"/>
             <child link="wheel_left_link"/>
             <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="0.0 0.0 0.0"/>
@@ -175,21 +175,21 @@ Never use any other character in these files instead of english language include
 
         <link name="wheel_left_link">
             <visual>
-                <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="1.570795 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
                 <geometry>
                     <cylinder radius="${wheel_link_radius}" length="${wheel_link_length}"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="${-body_link_x_dim/2+1.2*wheel_link_radius} ${body_link_y_dim/2+wheel_link_length/2} ${wheel_link_z_location}" rpy="1.570795 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
                 <geometry>
                     <cylinder radius="${wheel_link_radius}" length="${wheel_link_length}"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_wheel>
+            <xacro:inertia_wheel/>
         </link>
 
         <!-- Support Wheel Body -->
@@ -204,14 +204,14 @@ Never use any other character in these files instead of english language include
 
         <link name="support_wheel_body_link">
             <visual>
-                <origin xyz="0.015 0.0 0.047" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.020 0.020 0.010"/>    
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="0.015 0.0 0.047" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.020 0.020 0.010"/>    
                 </geometry>
@@ -219,7 +219,7 @@ Never use any other character in these files instead of english language include
         </link>
 
         <!-- Support Wheel -->
-        <joint name="support_wheel_joint" type="continious">
+        <joint name="support_wheel_joint" type="continuous">
             <parent link="support_wheel_body_link"/>
             <child link="support_wheel_link"/>
             <origin xyz="-0.047 0.0 0.015" rpy="0.0 0.0 0.0"/>
@@ -230,23 +230,23 @@ Never use any other character in these files instead of english language include
 
         <link name="support_wheel_link">
             <visual>
-                <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+                <origin xyz="0.0 0.0 0.0" rpy="1.2345 0.56789 0.392699"/>
                 <geometry>
-                    <sphere radius="0.005"/>
+                    <sphere radius="${support_wheel_link_radius}"/>
                 </geometry>
             </visual>
                 
             <collision>
-                <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+                <origin xyz="0.0 0.0 0.0" rpy="1.2345 0.56789 0.392699"/>
                 <geometry>
-                    <sphere radius="0.005"/>
+                    <sphere radius="${support_wheel_link_radius}"/>
                 </geometry>
             </collision>
             
             <inertial>
-                <origin xyz="-0.047 0.0 0.015" rpy="1.2345 0.56789 0.392699"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <mass value="${body_mass}"/>
-                <inertia ixx="${(2/5)*support_wheel_mass*0.005^2}" ixy="0" ixz="0" iyy="${(2/5)*support_wheel_mass*0.005^2}" iyz="0" izz="${(2/5)*support_wheel_mass*0.005^2}"/>
+                <inertia ixx="${(2.0/5.0)*support_wheel_mass*support_wheel_link_radius*support_wheel_link_radius}" ixy="0" ixz="0" iyy="${(2.0/5.0)*support_wheel_mass*0.005*0.005}" iyz="0" izz="${(2.0/5.0)*support_wheel_mass*0.005*0.005}"/>
             </inertial>
         </link>
 
@@ -265,21 +265,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_lf_link">
             <visual>
-                <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0155 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Left back -->
@@ -293,21 +293,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_lb_link">
             <visual>
-                <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0565 -0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Right front -->
@@ -321,21 +321,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_rf_link">
             <visual>
-                <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0155 0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Right back -->
@@ -349,21 +349,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_rb_link">
             <visual>
-                <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0565 0.033 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- ############################# -->
@@ -371,7 +371,7 @@ Never use any other character in these files instead of english language include
         <!-- ############################# -->
 
         <joint name="upper_body_1_joint" type="fixed">
-            <parent link="upper_body_support_lf"/>
+            <parent link="upper_body_support_lf_link"/>
             <child link="upper_body_1_link"/>
             <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
             <axis xyz="0.0 0.0 0.0"/>
@@ -380,28 +380,26 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_1_link">
             <visual>
-                <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.055 0.08 0.01"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.036 0.0 0.075" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.055 0.08 0.01"/>
                 </geometry>
             </collision>
             
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body>
+            <xacro:inertia_upper_body/>
         </link>
 
         <!-- ####################################### -->
         <!-- Second four support sticks of our robot -->
         <!-- ####################################### -->
-
-    <!-- belirlediğimiz origin değeri öbjenin başlangıcı imiş, diğer tüm değerli kontrol etmem lazımi bundan sonrakileri buna dikkat ederecek yapmalıyım önemli not. henüz düzenlenmediler -->
 
         <!-- Left front -->
         <joint name="upper_body_support_lf_2_joint" type="fixed">
@@ -414,21 +412,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_lf_2_link">
             <visual>
-                <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0155 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Left back -->
@@ -442,21 +440,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_lb_2_link">
             <visual>
-                <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0565 -0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Right front -->
@@ -470,21 +468,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_rf_2_link">
             <visual>
-                <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0155 0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- Right back -->
@@ -498,21 +496,21 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_support_rb_2_link">
             <visual>
-                <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.0565 0.033 0.08" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.01 0.01 0.03"/>
                 </geometry>
             </collision>
 
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body_support>
+            <xacro:inertia_upper_body_support/>
         </link>
 
         <!-- ############################## -->
@@ -529,23 +527,22 @@ Never use any other character in these files instead of english language include
 
         <link name="upper_body_2_link">
             <visual>
-                <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.055 0.08 0.01"/>
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz="-0.036 0.0 0.15" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.055 0.08 0.01"/>
                 </geometry>
             </collision>
             
             <!-- Macro we defined before -->
-            <xacro:inertia_upper_body>
+            <xacro:inertia_upper_body/>
         </link>
-
     </robot>
 
 ## robot.gazebo:
@@ -653,59 +650,58 @@ Never use any other character in these files instead of english language include
         <gazebo>
             <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 
-            <!-- Control update raze in Hz -->
-            <updateRate>100.0</updateRate>        
-            
-            <!-- Leave this empty otherwise there will be problems with sending control commands -->
-            <robotNamespace></robotNamespace>
-            
-            <!-- Robot Kinematics -->
-            <leftBackJoint>wheel_left_joint</leftBackJoint>
-            <rightBackJoint>wheel_right_joint</rightBackJoint>
-            <supportWheelBodyJoint>support_wheel_body_joint</supportWheelBodyJoint>
-            <supportWheelJoint>support_wheel_joint</supportWheelJoint>
-            <upperBodySupportLf>upper_body_support_lf_joint</upperBodySupportLf>
-            <upperBodySupportLb>upper_body_support_lb_joint</upperBodySupportLb>
-            <upperBodySupportRf>upper_body_support_rf_joint</upperBodySupportRf>
-            <upperBodySupportRb>upper_body_support_rb_joint</upperBodySupportRb>
-            <upperBody1>upper_body_1_joint</upperBody1>
-            <upperBodySupportLf2>upper_body_support_lf_2_joint</upperBodySupportLf2>
-            <upperBodySupportLb2>upper_body_support_lb_2_joint</upperBodySupportLb2>
-            <upperBodySupportRf2>upper_body_support_rf_2_joint</upperBodySupportRf2>
-            <upperBodySupportRb2>upper_body_support_rb_2_joint</upperBodySupportRb2>
-            <upperBody2>upper_body_2_joint</upperBody2>
-            <wheelSeparation>${-body_link_y_dim+wheel_link_length}</wheelSeparation>
-            <wheelDiameter>${wheel_link_radius}</wheelDiameter>
-            
-            <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-            <torque>1000</torque>
-            
-            <!-- Topic to receive geometry_msgs/Twist message commands, default to "cmd_vel" -->
-            <commandTopic>cmd_vel</commandTopic>
-            
-            <!-- Topic to publish nac_msgs/Odometry messages, defaults to "odom" -->
-            <odometryTopic>odom</odometryTopic>
-            
-            <!-- Odometry frame, defaults to "odom" -->
-            <odometryTopic>odom</odometryTopic>
-            
-            <!-- Robot frame to calculate odometry from, defaults to "base_footprint" -->
-            <robotBaseFrame>dummy</robotBaseFrame>
+                <!-- Control update raze in Hz -->
+                <updateRate>100.0</updateRate>        
+                
+                <!-- Leave this empty otherwise there will be problems with sending control commands -->
+                <robotNamespace></robotNamespace>
+                
+                <!-- Robot Kinematics -->
+                <leftBackJoint>wheel_left_joint</leftBackJoint>
+                <rightBackJoint>wheel_right_joint</rightBackJoint>
+                <supportWheelBodyJoint>support_wheel_body_joint</supportWheelBodyJoint>
+                <supportWheelJoint>support_wheel_joint</supportWheelJoint>
+                <upperBodySupportLf>upper_body_support_lf_joint</upperBodySupportLf>
+                <upperBodySupportLb>upper_body_support_lb_joint</upperBodySupportLb>
+                <upperBodySupportRf>upper_body_support_rf_joint</upperBodySupportRf>
+                <upperBodySupportRb>upper_body_support_rb_joint</upperBodySupportRb>
+                <upperBody1>upper_body_1_joint</upperBody1>
+                <upperBodySupportLf2>upper_body_support_lf_2_joint</upperBodySupportLf2>
+                <upperBodySupportLb2>upper_body_support_lb_2_joint</upperBodySupportLb2>
+                <upperBodySupportRf2>upper_body_support_rf_2_joint</upperBodySupportRf2>
+                <upperBodySupportRb2>upper_body_support_rb_2_joint</upperBodySupportRb2>
+                <upperBody2>upper_body_2_joint</upperBody2>
+                <wheelSeparation>${-body_link_y_dim+wheel_link_length}</wheelSeparation>
+                <wheelDiameter>${wheel_link_radius}</wheelDiameter>
+                
+                <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+                <torque>1000</torque>
+                
+                <!-- Topic to receive geometry_msgs/Twist message commands, default to "cmd_vel" -->
+                <commandTopic>cmd_vel</commandTopic>
+                
+                <!-- Topic to publish nac_msgs/Odometry messages, defaults to "odom" -->
+                <odometryTopic>odom</odometryTopic>
+                
+                <!-- Odometry frame, defaults to "odom" -->
+                <odometryTopic>odom</odometryTopic>
+                
+                <!-- Robot frame to calculate odometry from, defaults to "base_footprint" -->
+                <robotBaseFrame>dummy</robotBaseFrame>
 
-            <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-            <publishWheelTF>true</publishWheelTF>
+                <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+                <publishWheelTF>true</publishWheelTF>
 
-            <!-- Set to true to publish transforms for the wheel links, defaults to true -->
-            <publishOdom>true</publishOdom>
+                <!-- Set to true to publish transforms for the wheel links, defaults to true -->
+                <publishOdom>true</publishOdom>
 
-            <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-            <publishWheelJointStates>true</publishWheelJointStates>
+                <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+                <publishWheelJointStates>true</publishWheelJointStates>
 
-            <!-- This part required by Gazebo -->
-            <covariance_x>0.0001</covariance_x>
-            <covariance_y>0.0001</covariance_y>
-            <covariance_yaw>0.01</covariance_yaw>
-
+                <!-- This part required by Gazebo -->
+                <covariance_x>0.0001</covariance_x>
+                <covariance_y>0.0001</covariance_y>
+                <covariance_yaw>0.01</covariance_yaw>
             </plugin>
         </gazebo>
     </robot>
@@ -727,12 +723,12 @@ Never use any other character in these files instead of english language include
         </include>
         
         <!-- Load the robot description -->
-        <param name="two_wheeled_drive_robot" command="$(find xacro)/xacro '$(find robot_two_wheeled)/urdf/robot.xacro'"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find robot_model_pkg)/urdf/robot.xacro'"/>
         
         <!-- Robot state publisher node -->
-        <node name="two_wheeled_drive_robot" pkg="robot_state_publisher" type="robot_state_publisher"/>
+        <node name="robot_description" pkg="robot_state_publisher" type="robot_state_publisher"/>
         
         <!-- Spawn the model -->
-        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"  output="screen" respawn="false" args="-urdf -model robot_model -param two_wheeled_drive_robot"/>
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"  output="screen" respawn="false" args="-urdf -model robot_model -param robot_description"/>
 
     </launch>
