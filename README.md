@@ -77,8 +77,8 @@
     - "mkdir urdf"
     - "mkdir launch"
     - "cd urdf"
-    - "gedit material_color.xacro". You can find the content in README.md
-    - "gedit robot.xacro". You can find the content in README.md
+    - "gedit material_color.xacro". You can find the content in related README.md
+    - "gedit robot.xacro". You can find the content in related README.md
     ![Untitled](https://github.com/BeratTezer/Robot-Modelling/assets/64587561/9eea0efe-ea65-4550-929c-f0d0f346f3c1)
     - "cd ~/robot2_ws/src/robot2_model_pkg/launch"
     - "gedit robot_xacro.launch" You can find the content in README.md
